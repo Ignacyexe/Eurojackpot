@@ -40,6 +40,9 @@
 <div id="resultDiv">The results are: </div>
 
 <script>
+
+    lotto12()
+
     const Btn = document.getElementById("Btn")
     const resultDiv = document.getElementById("resultDiv")
 
@@ -122,7 +125,74 @@
         });
     });
 
+    function lotto12() {
+        const Btn1 = document.getElementById("Btn1")
+        const resultDiv1 = document.getElementById("resultDiv1")
 
+        const lottoInputForm = document.getElementById("lottoInputForm1")
+
+        const eurojackpot = {
+            results1: [],
+            maxResultsLength1: 2,
+            numbers1: 12,
+            userInput1: []
+        }
+
+        const {
+            results1,
+            maxResultsLength1,
+            numbers1,
+            userInput1,
+        } = eurojackpot;
+
+        const setNumberInterval = setInterval(randomNum, 10, numbers1)
+        window.Btn.addEventListener('click', pickNumber)
+
+        function randomNum(numbers) {
+            number1 = Math.floor(Math.random() * Math.floor(numbers) + 1);
+            if (number1 > 9) {
+                resultDiv1.innerText = "The results are: " + results1 + " " + number1;
+            } else {
+                resultDiv1.innerText = "The results are: " + results1 + " " + "0" + number1;
+            }
+        }
+
+        function pickNumber() {
+            if (!results1.includes(number1)) {
+                results1.push(number1);
+            } else {
+                randomNum(numbers1);
+                pickNumber();
+            }
+            if (results1.length === maxResultsLength1) {
+                clearInterval(setNumberInterval);
+                console.log(results1);
+                Btn1.removeEventListener('click', pickNumber);
+                const matches = userInput1.filter(function (value) {
+                    return results1.includes(value);
+                });
+
+                if (matches.length !== 1) {
+                    resultDiv1.innerText = "The results are: " + results1 + " " + ", you matched " + matches.length + " numbers!";
+                } else {
+                    resultDiv1.innerText = "The results are: " + results1 + " " + ", you matched " + matches.length + " number!";
+                }
+            }
+        }
+
+        lottoInputForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            Array.from(e.target).forEach(element => {
+                if (userInput1.length < maxResultsLength1) {
+                    userInput1.push(parseInt(element.value))
+                } else {
+                    console.log(userInput1);
+                    updateStyles();
+                }
+            });
+        });
+
+    }
 
 </script>
 
@@ -243,8 +313,8 @@
     }
 
     #resultDiv1 {
-        margin-top: 30px;
-        height: 50px;
+        margin-top: 10px;
+        height: 20px;
         color: white;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
