@@ -8,8 +8,20 @@
 <body>
 <header>
     <h1>Eurojackpot</h1>
-    <h2>Pick 6 numbers from 1 to 50</h2>
+    <h2>Pick 2 numbers from 1 to 12</h2>
 </header>
+
+<div>
+    <form id="lottoInputForm1">
+        <input type="number" class="lottoStyle" value="input7" name="input7" max="12" min="1" placeholder="_">
+        <input type="number" class="lottoStyle" value="input8" name="input8" max="12" min="1" placeholder="_">
+    </form>
+</div>
+
+<button id="Btn1">Pick a number</button>
+<div id="resultDiv1">The results are: </div>
+
+<h3>Pick 6 numbers from 1 to 50</h3>
 
 <div>
     <form id="lottoInputForm">
@@ -27,25 +39,12 @@
 <button id="Btn">Pick a number</button>
 <div id="resultDiv">The results are: </div>
 
-
-
-<h3>Pick 2 numbers from 1 to 12</h3>
-
-<div>
-    <form id="lottoInputForm1">
-        <input type="number" class="lottoStyle" value="input7" name="input7" max="12" min="1" placeholder="_">
-        <input type="number" class="lottoStyle" value="input8" name="input8" max="12" min="1" placeholder="_">
-    </form>
-</div>
-
-<button id="Btn1">Pick a number</button>
-<div id="resultDiv1">The results are: </div>
-
 <script>
     const Btn = document.getElementById("Btn")
     const resultDiv = document.getElementById("resultDiv")
 
     const formBtn = document.getElementById("formBtn")
+
     const lottoInputForm = document.getElementById("lottoInputForm")
     const lottoStyle = document.getElementsByClassName("lottoStyle")
 
@@ -98,6 +97,7 @@
         }
     }
 
+    // Update style, when form is submitted
     const updateStyles = function() {
         formBtn.style.visibility = "hidden";
         Btn.style.visibility = "visible";
@@ -122,10 +122,6 @@
         });
     });
 
-
-
-    const Btn1 = document.getElementById("Btn1")
-    const resultDiv1 = document.getElementById("resultDiv1")
 
 
 </script>
@@ -248,6 +244,7 @@
 
     #resultDiv1 {
         margin-top: 30px;
+        height: 50px;
         color: white;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
